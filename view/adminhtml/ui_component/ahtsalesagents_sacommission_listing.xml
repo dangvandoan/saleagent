@@ -31,7 +31,7 @@
         </settings>
         <bookmark name="bookmarks"/>
 
-        <!-- <filterSearch name="fulltext">
+        <filterSearch name="fulltext">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="provider" xsi:type="string">ahtsalesagents_sacommission_listing.ahtsalesagents_sacommission_listing_data_source</item>
@@ -42,7 +42,7 @@
                     </item>
                 </item>
             </argument>
-        </filterSearch> -->
+        </filterSearch>
 
         <columnsControls name="columns_controls"/>
         <!-- <exportButton name="export_button"/> -->

@@ -6,8 +6,8 @@ class Commissiontype extends \Magento\Eav\Model\Entity\Attribute\Source\Abstract
     public function getAllOptions() {
         if ($this->_options === null) {
             $this->_options = [
-                ['label' => __('--Fixel/Percent--'), 'value' => ''],
-                ['label' => __('Fixel'), 'value' => 1],
+                ['label' => __('--Fixed/Percent--'), 'value' => ''],
+                ['label' => __('Fixed'), 'value' => 1],
                 ['label' => __('Percent'), 'value' => 2]
             ];
         }

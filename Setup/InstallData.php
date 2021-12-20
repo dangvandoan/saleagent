@@ -120,7 +120,7 @@ class InstallData implements InstallDataInterface
 
         $dataNewsRows = [
             [
-                'type_name' => 'Fixel',
+                'type_name' => 'Fixed',
             ],
             [
                 'type_name' => 'Percent',
