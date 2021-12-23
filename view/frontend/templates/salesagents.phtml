@@ -24,7 +24,7 @@ foreach ($productcollection as $product) {
             <caption class="table-caption"><?= $block->escapeHtml(__('Orders')) ?></caption>
             <thead>
                 <tr>
-                    <th scope="col" class="col id"><?= $block->escapeHtml(__('Product Name #')) ?></th>
+                    <th scope="col" class="col id"><?= $block->escapeHtml(__('Product Name')) ?></th>
                     <th scope="col" class="col date"><?= $block->escapeHtml(__('SKU')) ?></th>
                     <th scope="col" class="col date"><?= $block->escapeHtml(__('Price')) ?></th>
                     <?= $block->getChildHtml('extra.column.header') ?>
@@ -36,7 +36,7 @@ foreach ($productcollection as $product) {
             <tbody>
                 <?php foreach ($productcollection as $products) : ?>
                     <tr>
-                        <td data-th="<?= $block->escapeHtml(__('Product Name #')) ?>" class="col id"><a href="<?= $products->getProductUrl()  ?>"><?= $block->escapeHtml($products->getName()) ?></a></td>
+                        <td data-th="<?= $block->escapeHtml(__('Product Name')) ?>" class="col id"><a href="<?= $products->getProductUrl()  ?>"><?= $block->escapeHtml($products->getName()) ?></a></td>
                         <td data-th="<?= $block->escapeHtml(__('SKU')) ?>" class="col date"><?= /* @noEscape */ $block->escapeHtml($products->getSku()) ?></td>
                         <td data-th="<?= $block->escapeHtml(__('Price')) ?>" class="col date"><?= /* @noEscape */ $formatCurrency->currency($products->getPrice()) ?></td>
                         <?php $extra = $block->getChildBlock('extra.container'); ?>
@@ -47,7 +47,7 @@ foreach ($productcollection as $product) {
                         <td data-th="<?= $block->escapeHtml(__('Commisson Type')) ?>" class="col total">
                             <?php /* @noEscape */ $typeCommisson = $products->getCommissionType();
                             if ($typeCommisson == 1) {
-                                echo 'Fixel';
+                                echo 'Fixed';
                             } else {
                                 echo 'Percent';
                             }
