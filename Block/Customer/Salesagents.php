@@ -33,50 +33,6 @@ class Salesagents extends \Magento\Framework\View\Element\Template
     public function getProductCollection()
     {
 
-        // $this->_customerSession->getData();
-        // //var_dump($this->_customerSession->getCustomerId());die("aaa");
-
-        // if($this->_customerSession->isLoggedIn()) {
-        //     echo '1';die;
-        // }
-        // $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-
-        // $customerSession = $objectManager->create("Magento\Customer\Model\Session");
-
-        // if ($customerSession->isLoggedIn()) {
-        //     $customerId = $customerSession->getCustomerId();
-        // }
-
-        // $customerId = $this->_customerSession->getCustomerId();
-        // $collection = $this->_productCollectionFactory->create();
-
-        // $collection->addAttributeToSelect('*')->addAttributeToFilter('sale_agent_id', array('like' => '1'));
-        // $collection->addAttributeToSelect('*')->addFieldToFilter('sale_agent_id', 1);
-        // //     echo "<pre>";
-        // // $a = $collection->addAttributeToSelect('*')->getData();
-        // // var_dump($a); die;
-
-        // $aht_sales_agent = $this->_resource->getTableName('aht_sales_agent');
-
-        // // $collection->getSelect()
-        // // ->joinleft('blog_comments as item',
-        // //     'main_table.post_id=item.post_id', 
-        // //     array('main_table.*', 'count(item.cmt_id) as sl',
-        // // ));
-
-        // $collection->getSelect()->join(
-        //     ['order_sa' => $aht_sales_agent],
-        //     'e.entity_id = 1 '
-        // );
-
-
-        // $collection->setPageSize(5);
-
-        // // var_dump($collection->getData());
-        // return $collection;
-
-
-
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 
         $customerSession = $objectManager->create("Magento\Customer\Model\Session");
@@ -99,5 +55,47 @@ class Salesagents extends \Magento\Framework\View\Element\Template
         $collection->setPageSize($pageSize)->setCurPage($page);
 
         return $collection;
+
+        
+    }
+
+      /**
+     * No assign product message
+     *
+     * @return string
+     */
+    public function getEmptyProductMessage()
+    {
+        return "No product was assigned to you!";
+    }
+
+    /**
+     * Get Pager child block output
+     *
+     * @return string
+     */
+    public function getPagerHtml()
+    {
+        return $this->getChildHtml('pager');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function _prepareLayout()
+    {
+        parent::_prepareLayout();
+        if ($this->getProductCollection()) {
+            $pager = $this->getLayout()->createBlock(
+                \Magento\Theme\Block\Html\Pager::class,
+                'saleagent.product.pager'
+            )->setAvailableLimit([5 => 5, 10 => 10, 15 => 15, 20 => 20])
+                ->setShowPerPage(true)->setCollection(
+                    $this->getProductCollection()
+                );
+            $this->setChild('pager', $pager);
+            $this->getProductCollection()->load();
+        }
+        return $this;
     }
 }
